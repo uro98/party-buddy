@@ -1,12 +1,14 @@
 from flask import Flask
 from flask_ask import Ask, delegate, statement
+import random
 
 app = Flask(__name__)
 ask = Ask(app, '/')
 
 contacts = ['jon']
 partylist = ['jon', 'amy', 'tom']
-
+with open('PartyThemes', encoding='utf8') as p:
+    themes = p.readlines()
 
 # todo: date might be in the past
 @ask.intent('OrganizeParty')
@@ -45,6 +47,11 @@ def is_invited(name):
     if name in contacts:
         return statement(name + ' is not invited.')
     return statement(name + ' is not in your contact list.')
+
+
+@ask.intent('SuggestPartyTheme')
+def suggest_theme():
+    return statement('How about ' + random.choice(themes) + '?')
 
 
 if __name__ == '__main__':
