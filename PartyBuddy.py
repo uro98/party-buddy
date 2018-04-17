@@ -1,16 +1,50 @@
-from datetime import datetime
-import requests
-
 from flask import Flask
 from flask_ask import Ask, delegate, statement
 
 app = Flask(__name__)
 ask = Ask(app, '/')
 
+contacts = ['jon']
+partylist = ['jon', 'amy', 'tom']
 
+
+# todo: date might be in the past
 @ask.intent('OrganizeParty')
-def organize_party():
-    return statement("Organizing a party.")
+def organize_party(date, time):
+    if date is None or time is None:
+        return delegate()
+    print(date)
+    print(time)
+    return statement(
+            'Organizing a party on ' + date + ' at ' + time)
+
+
+# todo: add last name
+@ask.intent('Invite')
+def add_person(name):
+    name = name.lower()
+    if name in partylist:
+        return statement(name + ' is already in your party list.')
+    if name in contacts:
+        partylist.append(name)
+        return statement('Added ' + name + ' to the party list.')
+    return statement(name + ' is not in your contact list.')
+
+
+@ask.intent('PeopleInvited')
+def people_invited():
+    return statement('You have invited ' + ', '.join(partylist))
+
+
+# if not invited, want invited?
+@ask.intent('IsInvited')
+def is_invited(name):
+    name = name.lower()
+    if name in partylist:
+        return statement(name + ' is invited.')
+    if name in contacts:
+        return statement(name + ' is not invited.')
+    return statement(name + ' is not in your contact list.')
 
 
 if __name__ == '__main__':
