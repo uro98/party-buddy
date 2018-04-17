@@ -10,15 +10,17 @@ partylist = ['jon', 'amy', 'tom']
 with open('PartyThemes', encoding='utf8') as p:
     themes = p.readlines()
 
+
 # todo: date might be in the past
 @ask.intent('OrganizeParty')
-def organize_party(date, time):
-    if date is None or time is None:
+def organize_party(date, time, location):
+    if date is None or time is None or location is None:
         return delegate()
     print(date)
     print(time)
+    print(location)
     return statement(
-            'Organizing a party on ' + date + ' at ' + time)
+            'Organizing a party on ' + date + ' at ' + time + ' at ' + location)
 
 
 # todo: add last name
