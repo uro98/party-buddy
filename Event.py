@@ -88,3 +88,10 @@ def update_event_location(location):
 #     event['description'] = PartyBuddy.themes[PartyBuddy.themeNumber]
 #
 #     quickstart.service.events().update(calendarId='aei1.2018@flightofstairs.org', eventId=myEventId, body=event).execute()
+
+def get_attendees_status():
+    event = quickstart.service.events().get(calendarId='aei1.2018@flightofstairs.org', eventId=myEventId).execute()
+    attendeesList = event['attendees']
+    accepted = list(filter(lambda x: x['responseStatus'] == 'accepted', attendeesList))
+    print(attendeesList)
+    print(accepted)

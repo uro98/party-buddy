@@ -80,5 +80,10 @@ def describe_theme():
     return statement(themesDescriptions[themeNumber])
 
 
+@ask.intent('PeopleComing')
+def people_coming():
+    Event.get_attendees_status()
+
+
 if __name__ == '__main__':
     app.run(debug=True)
