@@ -6,10 +6,12 @@ import Event
 app = Flask(__name__)
 ask = Ask(app, '/')
 
-contacts = ['jon']
-partylist = ['jon', 'amy', 'tom']
+contacts = {'migle': 'migle19@gmail.com', 'kasia': 'katarzyna.joanna.koprowska@gmail.com', 'yujo': 'zoey5538@gmail.com'}
+partylist = {'kasia': 'katarzyna.joanna.koprowska@gmail.com', 'yujo': 'zoey5538@gmail.com'}
 with open('PartyThemes', encoding='utf8') as p:
     themes = p.readlines()
+with open('PartyThemesDescriptions', encoding='utf8') as d:
+    themesDescriptions = d.readlines()
 
 
 # todo: date might be in the past
@@ -28,13 +30,15 @@ def organize_party(date, time, location):
 
 
 # todo: add last name
+# add people from our contact list to party list
 @ask.intent('Invite')
 def add_person(name):
     name = name.lower()
     if name in partylist:
         return statement(name + ' is already in your party list.')
     if name in contacts:
-        partylist.append(name)
+        partylist[name] = contacts[name]
+        Event.update_event(name)
         return statement('Added ' + name + ' to the party list.')
     return statement(name + ' is not in your contact list.')
 
