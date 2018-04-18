@@ -18,7 +18,7 @@ def organize_party(date, time, location):
     if date is None or time is None or location is None:
         return delegate()
 
-    Event.create_event()
+    Event.create_event(location, date, time)
 
     print(date)
     print(time)
