@@ -4,6 +4,9 @@
 # stored credentials.
 
 import quickstart
+import PartyBuddy
+
+myEventId = ''
 
 
 # todo: date overflow,
@@ -34,11 +37,22 @@ def create_event(location, date, time):
             'useDefault': False,
             'overrides': [
                 {'method': 'email', 'minutes': 24 * 60},
-                {'method': 'popup', 'minutes': 10},
+                {'method': 'popup', 'minutes': 60},
             ],
         },
     }
 
     event = quickstart.service.events().insert(calendarId='aei1.2018@flightofstairs.org', body=event).execute()
+    global myEventId
+    myEventId = event['id']
     print('Event created: %s' % (event.get('htmlLink')))
 
+
+def update_event(name):
+    # First retrieve the event from the API.
+    event = quickstart.service.events().get(calendarId='aei1.2018@flightofstairs.org', eventId=myEventId).execute()
+
+    email = PartyBuddy.contacts[name]
+    event['attendees'].append({'email': email})
+
+    quickstart.service.events().update(calendarId='aei1.2018@flightofstairs.org', eventId=myEventId, body=event).execute()
