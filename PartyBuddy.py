@@ -10,6 +10,8 @@ contacts = {'migle': 'migle19@gmail.com', 'kasia': 'katarzyna.joanna.koprowska@g
 partylist = {'kasia': 'katarzyna.joanna.koprowska@gmail.com', 'yujo': 'zoey5538@gmail.com'}
 with open('PartyThemes', encoding='utf8') as p:
     themes = p.readlines()
+with open('PartyThemesDescriptions', encoding='utf8') as d:
+    themesDescriptions = d.readlines()
 
 
 # todo: date might be in the past
