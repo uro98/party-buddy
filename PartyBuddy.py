@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_ask import Ask, delegate, statement
 import random
+import Event
 
 app = Flask(__name__)
 ask = Ask(app, '/')
@@ -16,6 +17,9 @@ with open('PartyThemes', encoding='utf8') as p:
 def organize_party(date, time, location):
     if date is None or time is None or location is None:
         return delegate()
+
+    Event.create_event()
+
     print(date)
     print(time)
     print(location)
