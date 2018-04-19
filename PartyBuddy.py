@@ -75,6 +75,8 @@ def suggest_theme(yes_no):
     if yes_no is None:
         themeNumber = random.randint(0, len(themes) - 1)
         return elicit_slot('yes_no', '<speak><s>How about ' + themes[themeNumber] + '?</s> Would you like to use this theme for your party?</speak>')
+    if yes_no == 'describe':
+        return statement(themesDescriptions[themeNumber])
     if yes_no == 'yes':
         Event.update_event_description(themeNumber)
         return statement('The theme has been added to your calendar event.')
