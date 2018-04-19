@@ -9,7 +9,7 @@ ask = Ask(app, '/')
 
 contacts = {'migle': 'migle19@gmail.com', 'kasia': 'katarzyna.joanna.koprowska@gmail.com', 'yujo': 'zoey5538@gmail.com'}
 partylist = {'kasia': 'katarzyna.joanna.koprowska@gmail.com', 'yujo': 'zoey5538@gmail.com'}
-themeNumber = 0
+themeNumber = 20
 
 with open('PartyThemes', encoding='utf8') as p:
     themes = p.readlines()
@@ -87,6 +87,10 @@ def describe_theme():
 def people_coming():
     Event.get_attendees_status()
 
+@ask.intent('SuggestPlaylist')
+def suggest_playlist():
+    if(themeNumber<20) return statement('I think ' + playlists[themeNumber] + ' will be best for your theme.')
+    return statement('You have not chosen the theme yet.' )
 
 if __name__ == '__main__':
     app.run(debug=True)
