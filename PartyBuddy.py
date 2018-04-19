@@ -31,10 +31,6 @@ def organize_party(date, time, location):
         return delegate()
 
     Event.create_event(location, date, time)
-
-    print(date)
-    print(time)
-    print(location)
     return statement(
             'Organizing a party on ' + date + ' at ' + time + ' at ' + location)
 
@@ -110,7 +106,6 @@ def give_recipe():
 def people_coming():
     emails = Event.get_attendees_status()
     names = map(lambda email: getKeyByValue(email, contacts), emails)
-    print(names)
     return statement(', '.join(names) + ' are coming')
 
 
@@ -127,10 +122,11 @@ def suggest_playlist():
         return statement('I think the ' + playlists[themeNumber] + ' playlist on Spotify will be best for your theme.')
     return statement('You have not chosen the theme yet.')
 
+
 @ask.intent('WhatToBuy')
 def what_to_buy(item, second_item):
     if item in groceries:
-        if second_item is None
+        if second_item is None:
             return statement(item + ' is already on your shopping list.')
         if second_item in groceries:
             return statement(item + ' and ' + second_item + ' are already on your shopping list.')
@@ -144,6 +140,7 @@ def what_to_buy(item, second_item):
     else:
         groceries.append(second_item)
         return statement('I have added ' + item + ' and ' + second_item + ' to your shopping list.')
+
 
 @ask.intent('GroceryList')
 def grocery_list():

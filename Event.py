@@ -10,8 +10,6 @@ from dateconversion import end_time, start_time
 myEventId = ''
 
 
-# todo: date overflow,
-# todo: update - theme (description), attendees, reminders
 def create_event(location, date, time):
     event = {
         'summary': 'My Party',
@@ -37,7 +35,8 @@ def create_event(location, date, time):
         },
     }
 
-    event = quickstart.service.events().insert(calendarId='aei1.2018@flightofstairs.org', body=event).execute()
+    event = quickstart.service.events() \
+        .insert(calendarId='aei1.2018@flightofstairs.org', body=event, sendNotifications=True).execute()
     global myEventId
     myEventId = event['id']
     print('Event created: %s' % (event.get('htmlLink')))
@@ -50,24 +49,21 @@ def update_event_invitees(name):
     email = PartyBuddy.contacts[name]
     event['attendees'].append({'email': email})
 
-    quickstart.service.events().update(calendarId='aei1.2018@flightofstairs.org', eventId=myEventId, body=event).execute()
+    quickstart.service.events() \
+        .update(calendarId='aei1.2018@flightofstairs.org', eventId=myEventId, body=event, sendNotifications=True).execute()
 
 
 def update_event_description(themeNumber):
     # First retrieve the event from the API.
     event = quickstart.service.events().get(calendarId='aei1.2018@flightofstairs.org', eventId=myEventId).execute()
-
     event['description'] = 'Theme: ' + PartyBuddy.themes[themeNumber]
-
     quickstart.service.events().update(calendarId='aei1.2018@flightofstairs.org', eventId=myEventId, body=event).execute()
 
 
 def update_event_location(location):
     # First retrieve the event from the API.
     event = quickstart.service.events().get(calendarId='aei1.2018@flightofstairs.org', eventId=myEventId).execute()
-
     event['location'] = location
-
     quickstart.service.events().update(calendarId='aei1.2018@flightofstairs.org', eventId=myEventId, body=event).execute()
 
 
@@ -92,7 +88,4 @@ def get_attendees_status():
     event = quickstart.service.events().get(calendarId='aei1.2018@flightofstairs.org', eventId=myEventId).execute()
     attendeesList = event['attendees']
     accepted = list(filter(lambda x: x['responseStatus'] == 'accepted', attendeesList))
-    print(attendeesList)
-    print(accepted)
-    emails = map(lambda x: x['email'], accepted)
-    return emails
+    return map(lambda x: x['email'], accepted)
