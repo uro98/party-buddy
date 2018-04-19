@@ -126,7 +126,7 @@ def suggest_playlist():
 @ask.intent('WhatToBuy')
 def what_to_buy(item, second_item):
     if item in groceries:
-        if second_item is None
+        if second_item is None:
             return statement(item + ' is already on your shopping list.')
         if second_item in groceries:
             return statement(item + ' and ' + second_item + ' are already on your shopping list.')
