@@ -1,5 +1,5 @@
 from flask import Flask
-from flask_ask import Ask, delegate, statement, elicit_slot
+from flask_ask import Ask, delegate, statement, elicit_slot, request
 import random
 import Event
 
@@ -72,12 +72,15 @@ def is_invited(name):
 @ask.intent('SuggestPartyTheme')
 def suggest_theme(yes_no):
     global themeNumber
+
     if yes_no is None:
         themeNumber = random.randint(0, len(themes) - 1)
         return elicit_slot('yes_no', '<speak><s>How about ' + themes[themeNumber] + '?</s> Would you like to use this theme for your party?</speak>')
-    if yes_no == 'describe':
-        return statement(themesDescriptions[themeNumber])
-    if yes_no == 'yes':
+
+    answer = request.intent.slots.yes_no.resolutions.resolutionsPerAuthority[0]['values'][0]['value']['name']
+    if answer == 'describe':
+        return elicit_slot('yes_no', themesDescriptions[themeNumber] + ' So, would you like to use this theme for your party?')
+    if answer == 'yes':
         Event.update_event_description(themeNumber)
         return statement('The theme has been added to your calendar event.')
     else:
