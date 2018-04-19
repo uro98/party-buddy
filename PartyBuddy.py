@@ -6,6 +6,7 @@ import Event
 app = Flask(__name__)
 ask = Ask(app, '/')
 
+
 contacts = {'migle': 'migle19@gmail.com', 'kasia': 'katarzyna.joanna.koprowska@gmail.com', 'yujo': 'zoey5538@gmail.com'}
 partylist = {'kasia': 'katarzyna.joanna.koprowska@gmail.com', 'yujo': 'zoey5538@gmail.com'}
 themeNumber = 0
@@ -14,6 +15,8 @@ with open('PartyThemes', encoding='utf8') as p:
     themes = p.readlines()
 with open('PartyThemesDescriptions', encoding='utf8') as d:
     themesDescriptions = d.readlines()
+with open('PartyPlaylists', encoding='utf8') as s:
+    playlists = s.readlines()
 
 
 # todo: date might be in the past
