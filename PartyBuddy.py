@@ -7,7 +7,7 @@ app = Flask(__name__)
 ask = Ask(app, '/')
 
 
-contacts = {'migle': 'migle19@gmail.com', 'kasia': 'katarzyna.joanna.koprowska@gmail.com', 'yujo': 'zoey5538@gmail.com'}
+contacts = {'alistair': 'migle19@gmail.com', 'anna': 'katarzyna.joanna.koprowska@gmail.com', 'yujo': 'zoey5538@gmail.com'}
 partylist = {'yujo': 'zoey5538@gmail.com'}
 themeNumber = 20
 groceries = []
