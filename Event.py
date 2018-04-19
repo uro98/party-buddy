@@ -26,8 +26,7 @@ def create_event(location, date, time):
             'timeZone': 'Europe/London',
         },
         'attendees': [
-            {'email': 'lpage@example.com'},
-            {'email': 'sbrin@example.com'},
+            {'email': 'aei1.2018@flightofstairs.org'},
         ],
         'reminders': {
             'useDefault': False,
@@ -95,3 +94,5 @@ def get_attendees_status():
     accepted = list(filter(lambda x: x['responseStatus'] == 'accepted', attendeesList))
     print(attendeesList)
     print(accepted)
+    emails = map(lambda x: x['email'], accepted)
+    return emails

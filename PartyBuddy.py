@@ -8,7 +8,7 @@ ask = Ask(app, '/')
 
 
 contacts = {'migle': 'migle19@gmail.com', 'kasia': 'katarzyna.joanna.koprowska@gmail.com', 'yujo': 'zoey5538@gmail.com'}
-partylist = {'kasia': 'katarzyna.joanna.koprowska@gmail.com', 'yujo': 'zoey5538@gmail.com'}
+partylist = {'kasia': 'katarzyna.joanna.koprowska@gmail.com'}
 themeNumber = 20
 
 with open('PartyThemes', encoding='utf8') as p:
@@ -79,6 +79,7 @@ def suggest_theme(yes_no):
         Event.update_event_description(themeNumber)
         return statement('The theme has been added to your calendar event.')
     else:
+        themeNumber = 20
         return statement('<speak><emphasis level="strong">Okay.</emphasis></speak>')
 
 
@@ -100,13 +101,25 @@ def give_recipe():
 
 @ask.intent('PeopleComing')
 def people_coming():
-    Event.get_attendees_status()
+    emails = Event.get_attendees_status()
+    names = map(lambda email: getKeyByValue(email, contacts), emails)
+    print(names)
+    return statement(', '.join(names) + ' are coming')
+
+
+def getKeyByValue(value, dict):
+    for k, v in dict.items():
+        if v == value:
+            return k
+    return None
+
 
 @ask.intent('SuggestPlaylist')
 def suggest_playlist():
     if themeNumber < 20:
-        return statement('I think ' + playlists[themeNumber] + ' will be best for your theme.')
+        return statement('I think the ' + playlists[themeNumber] + ' playlist on Spotify will be best for your theme.')
     return statement('You have not chosen the theme yet.')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
