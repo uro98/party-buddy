@@ -1,6 +1,12 @@
 import datetime
 
 
+def start_time(date, time):
+    try:
+        return datetime.datetime.strptime(date + " " + time, '%Y-%m-%d %H')
+    except ValueError:
+        return datetime.datetime.strptime(date + " " + time, '%Y-%m-%d %H:%M')
+
 def end_time(date, time):
     try:
         datetime_object = datetime.datetime.strptime(date + " " + time, '%Y-%m-%d %H')

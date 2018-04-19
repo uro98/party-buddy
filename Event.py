@@ -5,7 +5,7 @@
 
 import quickstart
 import PartyBuddy
-from dateconversion import end_time
+from dateconversion import end_time, start_time
 
 myEventId = ''
 
@@ -18,7 +18,7 @@ def create_event(location, date, time):
         'location': location,
         'description': 'COME PARTY!!!1!',
         'start': {
-            'dateTime': date + 'T' + time + ':00:00+01:00',
+            'dateTime': start_time(date, time).strftime("%Y-%m-%dT%H:%M:%S"),
             'timeZone': 'Europe/London',
         },
         'end': {
