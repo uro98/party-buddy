@@ -75,6 +75,7 @@ def suggest_theme(yes_no):
         Event.update_event_description(themeNumber)
         return statement('The theme has been added to your calendar event.')
     else:
+        themeNumber = 20
         return statement('<speak><emphasis level="strong">Okay.</emphasis></speak>')
 
 
@@ -101,7 +102,7 @@ def getKeyByValue(value, dict):
 @ask.intent('SuggestPlaylist')
 def suggest_playlist():
     if themeNumber < 20:
-        return statement('I think ' + playlists[themeNumber] + ' will be best for your theme.')
+        return statement('I think the ' + playlists[themeNumber] + ' playlist on Spotify will be best for your theme.')
     return statement('You have not chosen the theme yet.')
 
 
