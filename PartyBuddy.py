@@ -18,9 +18,9 @@ with open('PartyThemesDescriptions', encoding='utf8') as d:
 with open('PartyPlaylists', encoding='utf8') as s:
     playlists = s.readlines()
 with open('Cocktails', encoding='utf8') as c:
-    cocktails=c.readlines()
+    cocktails = c.readlines()
 with open('CocktailsRecipes', encoding='utf8') as r:
-    cocktailsRecipes=r.readlines()
+    cocktailsRecipes = r.readlines()
 
 
 # todo: date might be in the past
@@ -87,16 +87,17 @@ def suggest_theme(yes_no):
 def describe_theme():
     return statement(themesDescriptions[themeNumber])
 
+
 @ask.intent('SuggestCocktail')
 def suggest_cocktail():
     global cocktailsNumber
     cocktailsNumber = random.randint(0, len(cocktails) - 1)
-    return statement( 'I believe you would like ' + cocktails[cocktailsNumber])
+    return statement('I believe you would like the ' + cocktails[cocktailsNumber])
 
 
 @ask.intent('CocktailRecipe')
 def give_recipe():
-    return statement(cocktailsRecipes[cocktailsNumber])
+    return statement(cocktailsRecipes[cocktailsNumber] + ' Enjoy.')
 
 
 @ask.intent('PeopleComing')
