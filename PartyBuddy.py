@@ -10,7 +10,7 @@ ask = Ask(app, '/')
 contacts = {'migle': 'migle19@gmail.com', 'kasia': 'katarzyna.joanna.koprowska@gmail.com', 'yujo': 'zoey5538@gmail.com'}
 partylist = {'yujo': 'zoey5538@gmail.com'}
 themeNumber = 20
-grocery_list = []
+groceries = []
 
 with open('PartyThemes', encoding='utf8') as p:
     themes = p.readlines()
@@ -127,14 +127,19 @@ def suggest_playlist():
         return statement('I think the ' + playlists[themeNumber] + ' playlist on Spotify will be best for your theme.')
     return statement('You have not chosen the theme yet.')
 
-@ask.intent('GroceryList')
-def grocery_list(item, second_item):
-    grocery_list.append(item)
+@ask.intent('WhatToBuy')
+def what_to_buy(item, second_item):
+    groceries.append(item)
     if second_item is None:
         return statement('I have added '+ item + ' to your shopping list.')
     else:
-        grocery_list.append(second_item)
+        groceries.append(second_item)
         return statement('I have added ' + item + ' and ' + second_item + ' to your shopping list.')
+
+@ask.intent('GroceryList')
+def grocery_list():
+    return statement('Your grocery list contains ' + ', '.join(groceries))
+
 
 if __name__ == '__main__':
     app.run(debug=True)
