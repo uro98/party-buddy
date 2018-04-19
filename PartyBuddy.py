@@ -146,5 +146,19 @@ def what_to_buy(item, second_item):
 def grocery_list():
     return statement('Your grocery list contains ' + ', '.join(groceries))
 
+#todo: if not, would you like to add it?
+@ask.intent('AmIBuying')
+def am_i_buying(item):
+    if item in groceries:
+        return statement('Yes, ' + item + ' is on your shopping list.')
+    return statement('No, ' + item + ' is not on your shopping list.')
+
+@ask.intent('RemoveFromGroceryList')
+def remove_item(item):
+    if item in groceries:
+        groceries.remove(item)
+        return statement(item + ' was successfully removed.')
+    return statement('There is no such item on your shopping list.')
+
 if __name__ == '__main__':
     app.run(debug=True)
