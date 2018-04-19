@@ -89,8 +89,9 @@ def people_coming():
 
 @ask.intent('SuggestPlaylist')
 def suggest_playlist():
-    if(themeNumber<20) return statement('I think ' + playlists[themeNumber] + ' will be best for your theme.')
-    return statement('You have not chosen the theme yet.' )
+    if themeNumber < 20:
+        return statement('I think ' + playlists[themeNumber] + ' will be best for your theme.')
+    return statement('You have not chosen the theme yet.')
 
 if __name__ == '__main__':
     app.run(debug=True)
