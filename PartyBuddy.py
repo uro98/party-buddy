@@ -129,6 +129,15 @@ def suggest_playlist():
 
 @ask.intent('WhatToBuy')
 def what_to_buy(item, second_item):
+    if item in groceries:
+        if second_item is None
+            return statement(item + ' is already on your shopping list.')
+        if second_item in groceries:
+            return statement(item + ' and ' + second_item + ' are already on your shopping list.')
+        groceries.append(second_item)
+        return statement('I have added ' + second_item + ' to your shopping list, but ' + item + ' is already on your shopping list.')
+    if second_item in groceries:
+        return statement('I have added '+ item + ' to your shopping list, but ' + second_item + ' is already on your shopping list.')
     groceries.append(item)
     if second_item is None:
         return statement('I have added '+ item + ' to your shopping list.')
@@ -139,7 +148,6 @@ def what_to_buy(item, second_item):
 @ask.intent('GroceryList')
 def grocery_list():
     return statement('Your grocery list contains ' + ', '.join(groceries))
-
 
 if __name__ == '__main__':
     app.run(debug=True)
