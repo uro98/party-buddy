@@ -1,5 +1,5 @@
 from flask import Flask
-from flask_ask import Ask, delegate, statement
+from flask_ask import Ask, delegate, statement, elicit_slot
 import random
 import Event
 
@@ -8,6 +8,8 @@ ask = Ask(app, '/')
 
 contacts = {'migle': 'migle19@gmail.com', 'kasia': 'katarzyna.joanna.koprowska@gmail.com', 'yujo': 'zoey5538@gmail.com'}
 partylist = {'kasia': 'katarzyna.joanna.koprowska@gmail.com', 'yujo': 'zoey5538@gmail.com'}
+themeNumber = 0
+
 with open('PartyThemes', encoding='utf8') as p:
     themes = p.readlines()
 with open('PartyThemesDescriptions', encoding='utf8') as d:
@@ -38,7 +40,7 @@ def add_person(name):
         return statement(name + ' is already in your party list.')
     if name in contacts:
         partylist[name] = contacts[name]
-        Event.update_event(name)
+        Event.update_event_invitees(name)
         return statement('Added ' + name + ' to the party list.')
     return statement(name + ' is not in your contact list.')
 
@@ -59,9 +61,28 @@ def is_invited(name):
     return statement(name + ' is not in your contact list.')
 
 
+# todo: theme description
 @ask.intent('SuggestPartyTheme')
-def suggest_theme():
-    return statement('How about ' + random.choice(themes) + '?')
+def suggest_theme(yes_no):
+    global themeNumber
+    if yes_no is None:
+        themeNumber = random.randint(0, len(themes) - 1)
+        return elicit_slot('yes_no', '<speak><s>How about ' + themes[themeNumber] + '?</s> Would you like to use this theme for your party?</speak>')
+    if yes_no == 'yes':
+        Event.update_event_description(themeNumber)
+        return statement('The theme has been added to your calendar event.')
+    else:
+        return statement('<speak><emphasis level="strong">Okay.</emphasis></speak>')
+
+
+@ask.intent('DescribePartyTheme')
+def describe_theme():
+    return statement(themesDescriptions[themeNumber])
+
+
+@ask.intent('PeopleComing')
+def people_coming():
+    Event.get_attendees_status()
 
 
 if __name__ == '__main__':
