@@ -8,7 +8,7 @@ ask = Ask(app, '/')
 
 
 contacts = {'migle': 'migle19@gmail.com', 'kasia': 'katarzyna.joanna.koprowska@gmail.com', 'yujo': 'zoey5538@gmail.com'}
-partylist = {'kasia': 'katarzyna.joanna.koprowska@gmail.com'}
+partylist = {'yujo': 'zoey5538@gmail.com'}
 themeNumber = 20
 
 with open('PartyThemes', encoding='utf8') as p:
