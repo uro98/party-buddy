@@ -7,7 +7,7 @@ def end_time(date, time):
     except ValueError:
         datetime_object = datetime.datetime.strptime(date + " " + time, '%Y-%m-%d %H:%M')
 
-    EndDate = datetime_object + datetime.timedelta (hours = 5)
+    EndDate = datetime_object + datetime.timedelta(hours = 5)
     return EndDate
 
 
