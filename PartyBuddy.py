@@ -8,7 +8,7 @@ ask = Ask(app, '/')
 
 
 contacts = {'alistair': 'migle19@gmail.com', 'anna': 'katarzyna.joanna.koprowska@gmail.com', 'yujo': 'zoey5538@gmail.com'}
-partylist = {'yujo': 'zoey5538@gmail.com'}
+partylist = {}
 themeNumber = 20
 groceries = []
 
@@ -105,7 +105,7 @@ def give_recipe():
 @ask.intent('PeopleComing')
 def people_coming():
     emails = Event.get_attendees_status()
-    names = map(lambda email: getKeyByValue(email, contacts), emails)
+    names = list(map(lambda email: getKeyByValue(email, contacts), emails))
     if len(names) > 1:
         return statement(', '.join(names) + ' are coming')
     if names:
