@@ -106,7 +106,11 @@ def give_recipe():
 def people_coming():
     emails = Event.get_attendees_status()
     names = map(lambda email: getKeyByValue(email, contacts), emails)
-    return statement(', '.join(names) + ' are coming')
+    if len(names) > 1:
+        return statement(', '.join(names) + ' are coming')
+    if names:
+        return statement(' '.join(names) + ' is coming')
+    return statement('Noone has accepted your invitation yet, you loser, ha ha ha')
 
 
 def getKeyByValue(value, dict):
@@ -144,7 +148,9 @@ def what_to_buy(item, second_item):
 
 @ask.intent('GroceryList')
 def grocery_list():
-    return statement('Your grocery list contains ' + ', '.join(groceries))
+    if groceries:
+        return statement('Your grocery list contains ' + ', '.join(groceries))
+    return statement('Your grocery list is empty.')
 
 #todo: if not, would you like to add it?
 @ask.intent('AmIBuying')
