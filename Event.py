@@ -60,29 +60,13 @@ def update_event_description(themeNumber):
     quickstart.service.events().update(calendarId='aei1.2018@flightofstairs.org', eventId=myEventId, body=event).execute()
 
 
+# not used
 def update_event_location(location):
     # First retrieve the event from the API.
     event = quickstart.service.events().get(calendarId='aei1.2018@flightofstairs.org', eventId=myEventId).execute()
     event['location'] = location
     quickstart.service.events().update(calendarId='aei1.2018@flightofstairs.org', eventId=myEventId, body=event).execute()
 
-
-# def update_event_date(date):
-#     # First retrieve the event from the API.
-#     event = quickstart.service.events().get(calendarId='aei1.2018@flightofstairs.org', eventId=myEventId).execute()
-#
-#     event['description'] = PartyBuddy.themes[PartyBuddy.themeNumber]
-#
-#     quickstart.service.events().update(calendarId='aei1.2018@flightofstairs.org', eventId=myEventId, body=event).execute()
-#
-#
-# def update_event_time(time):
-#     # First retrieve the event from the API.
-#     event = quickstart.service.events().get(calendarId='aei1.2018@flightofstairs.org', eventId=myEventId).execute()
-#
-#     event['description'] = PartyBuddy.themes[PartyBuddy.themeNumber]
-#
-#     quickstart.service.events().update(calendarId='aei1.2018@flightofstairs.org', eventId=myEventId, body=event).execute()
 
 def get_attendees_status():
     event = quickstart.service.events().get(calendarId='aei1.2018@flightofstairs.org', eventId=myEventId).execute()

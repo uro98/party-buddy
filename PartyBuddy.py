@@ -8,7 +8,7 @@ ask = Ask(app, '/')
 
 
 contacts = {'alistair': 'migle19@gmail.com', 'anna': 'katarzyna.joanna.koprowska@gmail.com', 'yujo': 'zoey5538@gmail.com'}
-partylist = {'yujo': 'zoey5538@gmail.com'}
+partylist = {}
 themeNumber = 20
 groceries = []
 
@@ -105,7 +105,7 @@ def give_recipe():
 @ask.intent('PeopleComing')
 def people_coming():
     emails = Event.get_attendees_status()
-    names = map(lambda email: getKeyByValue(email, contacts), emails)
+    names = list(map(lambda email: getKeyByValue(email, contacts), emails))
     if len(names) > 1:
         return statement(', '.join(names) + ' are coming')
     if names:
@@ -152,6 +152,7 @@ def grocery_list():
         return statement('Your grocery list contains ' + ', '.join(groceries))
     return statement('Your grocery list is empty.')
 
+
 #todo: if not, would you like to add it?
 @ask.intent('AmIBuying')
 def am_i_buying(item):
@@ -159,12 +160,14 @@ def am_i_buying(item):
         return statement('Yes, ' + item + ' is on your shopping list.')
     return statement('No, ' + item + ' is not on your shopping list.')
 
+
 @ask.intent('RemoveFromGroceryList')
 def remove_item(item):
     if item in groceries:
         groceries.remove(item)
         return statement(item + ' was successfully removed.')
     return statement('There is no such item on your shopping list.')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
