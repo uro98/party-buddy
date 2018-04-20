@@ -34,8 +34,6 @@
     – (people accepting) ask party buddy who is coming to my party
     – ...
 
-Possible extension: connecting it with Google Contacts
-
 3.
     – ask party buddy to suggest a theme
     – <some theme>, would you like to use it?
@@ -57,8 +55,6 @@ Possible extension: connecting it with Google Contacts
     – <cocktail>
     – can you give me the recipe
     – recipe
-Possible extension: using cocktails api to find cocktails and recipes,
-                    now cocktails and cocktail recipes are chosen from a list
 
 5.
     – ask party buddy to add cheese
@@ -76,7 +72,15 @@ Possible extension: using cocktails api to find cocktails and recipes,
     – ask party buddy is cheese on my shopping list
     – no
 
-Possible extension: using Tesco API to add items directly to yout account on Tesco online store
+Possible extension of 1: Alexa Account Linking can be used to get access to other users' accounts
+                         now one account is hardcoded
+
+Possible extension of 2: connecting it with Google Contacts
+
+Possible extension of 4: using cocktails api to find cocktails and recipes,
+                         now cocktails and cocktail recipes are chosen from a list
+
+Possible extension of 5: using Tesco API to add items directly to your account on Tesco online store
 
 
 
