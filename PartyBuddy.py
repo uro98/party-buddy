@@ -110,7 +110,7 @@ def people_coming():
         return statement(', '.join(names) + ' are coming')
     if names:
         return statement(' '.join(names) + ' is coming')
-    return statement('Noone has accepted your invitation yet, you loser, ha ha ha')
+    return statement('Noone has accepted your invitation yet, you loser, hahaha')
 
 
 def getKeyByValue(value, dict):
