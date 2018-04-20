@@ -1,0 +1,89 @@
+1.
+    – ask party buddy to organise a party
+
+    – what date?
+    – Friday
+
+    – what time?
+    – 5pm
+
+    – where
+    – my place
+
+    – organizing... (showing the event popping up in google calendar)
+
+2.
+    – ask party buddy to invite Anna
+    – Anna added
+
+    – ask party buddy to add alistair to my party list
+    – Alistair added
+
+    – ask party buddy have I invited Alistair
+    – Alistair is on your party list
+
+    – ask party buddy to invite Anna
+    – Anna is already on your list
+
+    – ask party buddy who is on my party list
+    – you have invited Anna, Alistair
+
+    – ask party buddy who is coming to my party
+    – noone, hahaha
+
+    – (people accepting) ask party buddy who is coming to my party
+    – ...
+
+3.
+    – ask party buddy to suggest a theme
+    – <some theme>, would you like to use it?
+    – please describe
+    – <description> so now would you like to use it?
+    – sure
+    – theme added (showing updated description on google calendar event)
+
+    – ask party buddy to suggest a theme
+    – <some theme>, would you like to use it?
+    – no
+    – 'Okay...'
+
+    – ask party buddy to suggest a playlist
+    – playlist
+
+4.
+    – ask party buddy to suggest a cocktail
+    – <cocktail>
+    – can you give me the recipe
+    – recipe
+
+5.
+    – ask party buddy to add cheese
+    – added
+
+    – ask party buddy to add beer and crisps to my shopping list
+    – added
+
+    – ask party buddy to read my shopping list
+    – ...
+
+    – ask party buddy to remove cheese from my shopping list
+    – ...
+
+    – ask party buddy is cheese on my shopping list
+    – no
+
+Possible extension of 1: Alexa Account Linking can be used to get access to other users' accounts
+                         now one account is hardcoded
+
+Possible extension of 2: connecting it with Google Contacts
+
+Possible extension of 4: using cocktails api to find cocktails and recipes,
+                         now cocktails and cocktail recipes are chosen from a list
+
+Possible extension of 5: using Tesco API to add items directly to your account on Tesco online store
+
+
+
+
+
+
