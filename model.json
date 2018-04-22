@@ -1,0 +1,366 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "party buddy",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "OrganizeParty",
+                    "slots": [
+                        {
+                            "name": "date",
+                            "type": "AMAZON.DATE",
+                            "samples": [
+                                "On {date} at {time}",
+                                "On {date}"
+                            ]
+                        },
+                        {
+                            "name": "time",
+                            "type": "AMAZON.TIME"
+                        },
+                        {
+                            "name": "location",
+                            "type": "AMAZON.StreetAddress"
+                        }
+                    ],
+                    "samples": [
+                        "throw a party on {date}",
+                        "throw a party at {time} on {date}",
+                        "throw a party on {date} at {time}",
+                        "throw a party",
+                        "organize a party"
+                    ]
+                },
+                {
+                    "name": "Invite",
+                    "slots": [
+                        {
+                            "name": "name",
+                            "type": "AMAZON.GB_FIRST_NAME"
+                        }
+                    ],
+                    "samples": [
+                        "Add {name} to the party",
+                        "Invite {name}",
+                        "Invite {name} to the party",
+                        "Add {name} to the party list"
+                    ]
+                },
+                {
+                    "name": "PeopleInvited",
+                    "slots": [],
+                    "samples": [
+                        "Who is invited to my party",
+                        "Who is in my party list",
+                        "Who have I invited"
+                    ]
+                },
+                {
+                    "name": "IsInvited",
+                    "slots": [
+                        {
+                            "name": "name",
+                            "type": "AMAZON.GB_FIRST_NAME"
+                        }
+                    ],
+                    "samples": [
+                        "Is {name} invited",
+                        "Have I invited {name}"
+                    ]
+                },
+                {
+                    "name": "SuggestPartyTheme",
+                    "slots": [
+                        {
+                            "name": "yes_no",
+                            "type": "BOOLEAN"
+                        }
+                    ],
+                    "samples": [
+                        "I don't like that theme",
+                        "Give me another theme",
+                        "Suggest another theme",
+                        "Suggest a theme",
+                        "Give me a theme",
+                        "What theme should my party have",
+                        "Suggest a party theme",
+                        "Give me a party theme"
+                    ]
+                },
+                {
+                    "name": "DescribePartyTheme",
+                    "slots": [],
+                    "samples": [
+                        "Explain the theme",
+                        "Describe the theme",
+                        "What is this theme about",
+                        "What is this theme"
+                    ]
+                },
+                {
+                    "name": "PeopleComing",
+                    "slots": [],
+                    "samples": [
+                        "Who accepted my invitation",
+                        "Who is going",
+                        "Who is coming",
+                        "Who is going to my party",
+                        "Who is coming to my party"
+                    ]
+                },
+                {
+                    "name": "SuggestPlaylist",
+                    "slots": [],
+                    "samples": [
+                        "Suggest a playlist for my theme",
+                        "Suggest a playlist for my party",
+                        "Give me a playlist for my theme",
+                        "Suggest a playlist",
+                        "Give me a playlist for my party",
+                        "Give me a playlist"
+                    ]
+                },
+                {
+                    "name": "SuggestCocktail",
+                    "slots": [],
+                    "samples": [
+                        "Suggest a cocktail",
+                        "Suggest a cocktail recipe",
+                        "Give me a cocktail",
+                        "Give me a cocktail recipe",
+                        "Can you suggest a cocktail"
+                    ]
+                },
+                {
+                    "name": "CocktailRecipe",
+                    "slots": [],
+                    "samples": [
+                        "can you give me the recipe",
+                        "How do I make this cocktail",
+                        "Give me the recipe for this cocktail",
+                        "Give me the recipe",
+                        "What do I need to make this cocktail"
+                    ]
+                },
+                {
+                    "name": "WhatToBuy",
+                    "slots": [
+                        {
+                            "name": "item",
+                            "type": "AMAZON.Food"
+                        },
+                        {
+                            "name": "second_item",
+                            "type": "AMAZON.Food"
+                        }
+                    ],
+                    "samples": [
+                        "add {item} and {second_item} to my grocery list",
+                        "add {item} and {second_item} to my shopping list",
+                        "add {item} to my grocery list",
+                        "add {item} to my shopping list"
+                    ]
+                },
+                {
+                    "name": "GroceryList",
+                    "slots": [],
+                    "samples": [
+                        "tell me what is on my grocery list",
+                        "tell me what is on my shopping list",
+                        "read my shopping list",
+                        "read my grocery list"
+                    ]
+                },
+                {
+                    "name": "AmIBuying",
+                    "slots": [
+                        {
+                            "name": "item",
+                            "type": "AMAZON.Food"
+                        }
+                    ],
+                    "samples": [
+                        "have I got {item} on my shopping list",
+                        "is {item} on my grocery list",
+                        "is {item} on my shopping list",
+                        "am I buying {item}"
+                    ]
+                },
+                {
+                    "name": "RemoveFromGroceryList",
+                    "slots": [
+                        {
+                            "name": "item",
+                            "type": "AMAZON.Food"
+                        }
+                    ],
+                    "samples": [
+                        "remove {item} from my shopping list",
+                        "remove {item} from my grocery list"
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "BOOLEAN",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "describe",
+                                "synonyms": [
+                                    "can you explain the theme first",
+                                    "can you describe the theme first",
+                                    "i'm not sure, what's the theme about"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "no",
+                                "synonyms": [
+                                    "nope",
+                                    "nah",
+                                    "no thanks"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "yes",
+                                "synonyms": [
+                                    "sure",
+                                    "yep",
+                                    "yeah",
+                                    "why not",
+                                    "sounds great"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "OrganizeParty",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "date",
+                            "type": "AMAZON.DATE",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1442538670381.1156262035672"
+                            }
+                        },
+                        {
+                            "name": "time",
+                            "type": "AMAZON.TIME",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1442538670381.644600928854"
+                            }
+                        },
+                        {
+                            "name": "location",
+                            "type": "AMAZON.StreetAddress",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1402102598758.1499412179516"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Invite",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "name",
+                            "type": "AMAZON.GB_FIRST_NAME",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        }
+                    ]
+                },
+                {
+                    "name": "PeopleInvited",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": []
+                },
+                {
+                    "name": "SuggestPartyTheme",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "yes_no",
+                            "type": "BOOLEAN",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        }
+                    ]
+                }
+            ]
+        },
+        "prompts": [
+            {
+                "id": "Elicit.Slot.1442538670381.1156262035672",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "What date?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1442538670381.644600928854",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "What time?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1402102598758.1499412179516",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Where?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1374894575477.298442909506",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Would you like to use this theme for your party?"
+                    }
+                ]
+            }
+        ]
+    }
+}
